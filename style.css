@@ -1,3 +1,7 @@
+* {
+    font-family: "Roboto", sans-serif;
+}
+
 h1::after {
     display: block;
 
@@ -10,7 +14,7 @@ h1::after {
 }
 
 a {
-    color: lightgray;
+    color: #777;
     text-decoration: none;
     transition-duration: 0.2s;
 }
