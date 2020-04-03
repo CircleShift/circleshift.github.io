@@ -13,7 +13,10 @@ html, body {
 
 }
 
-.topbar {
+/*    Topbar rules    */
+
+.topbar
+{
     position: fixed;
 
     background-color: white;
@@ -29,66 +32,75 @@ html, body {
     z-index: 1;
 }
 
-.top-buttons {
+.top-buttons
+{
     display: flex;
 }
 
-button, input[type="button"] {
-    display: inline-block;
-    border: none;
-    background-color: dodgerblue;
-    padding: 10px;
-    font-size: medium;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-button.top-button {
+button.top-button
+{
     border-radius: 0;
     background-color: white;
+    color: black;
     flex: 1;
 
     border-left: 1px solid black;
     border-right: 1px solid black;
+
+    transition-duration: 0.2s;
 }
 
-.top-buttons > button:first-child {
+button.top-button:hover {
+    background-color: #ddd;
+}
+
+.top-buttons > button:first-child
+{
     border-left: none;
 }
 
-.top-buttons > button:last-child {
+.top-buttons > button:last-child
+{
     border-right: none;
 }
 
-div.new-game {
+div.new-game
+{
     flex: 1;
     flex-grow: 1;
     border-top: 2px solid black;
 }
 
-div.mobile-settings {
+div.mobile-settings
+{
     flex: 1;
     flex-grow: 1;
     border-top: 2px solid black;
 }
 
-div.topbar > div.status {
+div.topbar > div.status
+{
     height: 5px;
     flex-basis: auto;
 }
 
-div.stats {
+/*    Content rules    */
+
+div.stats
+{
     padding: 5px;
     display: flex;
     flex-direction: column;
 }
 
-div.stats > div {
+div.stats > div
+{
     flex: 1;
     display: flex;
 }
 
-div.stats > div > span {
+div.stats > div > span
+{
     flex-basis: content;
     display: inline-block;
 }
@@ -109,4 +121,52 @@ div.game {
 
 div.game:last-child {
     margin-bottom: none;
+}
+
+div.settings {
+    display:flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+/*    Table rules    */
+
+.table {
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+
+    animation-duration: 0.8s;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table[state="open"] ,.table[state="close"]{
+    animation-name: slide-in;
+    animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+.table[state="close"] {
+    animation-direction: reverse;
+}
+
+.table[state="closed"] {
+    transform: translate(0, -100vh);
+    opacity: 0;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translate(0, -100vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
 }

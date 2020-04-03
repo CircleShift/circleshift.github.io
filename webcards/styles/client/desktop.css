@@ -10,14 +10,6 @@
         TopBar rules
     */
 
-    button.top-button {
-        transition-duration: 0.2s;
-    }
-
-    button.top-button:hover {
-        background-color: #ddd;
-    }
-
     button#newgame:before{
         content: "Create Game";
     }
@@ -101,7 +93,7 @@
         padding: 10px;
         border-radius: 10px;
         background-color: #ddd;
-        flex: 4;
+        flex: 2;
 
         border: 5px solid #ddd;
     }

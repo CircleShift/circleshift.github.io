@@ -1,0 +1,116 @@
+card
+{
+    position: absolute;
+    display: block;
+    width: 150px;
+    height: 225px;
+    background-color: white;
+    border: 6px double #bbb;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    flex-direction: column;
+    overflow: hidden;
+    user-select: none;
+}
+
+card:hover
+{
+    box-shadow: 0 0 10px #0f0;
+}
+
+carea
+{
+    padding-left: 2px;
+    padding-right: 2px;
+    position: absolute;
+    display: flex;
+    vertical-align: middle;
+    width: 100%;
+}
+
+carea.top, carea.topl, carea.topr
+{
+    top: 0;
+    height: 8%;
+    text-align: center;
+}
+
+carea.topl
+{
+    width: 50%;
+    text-align: left;
+}
+
+carea.topr
+{
+    right: 0;
+    width: 50%;
+    text-align: right;
+}
+
+carea.mid
+{
+    top: 8%;
+    height: 84%;
+}
+
+carea.midt
+{
+    top: 8%;
+    height: 42%;
+}
+
+carea.midb
+{
+    
+    top: 50%;
+    height: 42%;
+}
+
+carea.bot, carea.botl, carea.botr
+{
+    bottom: 0;
+    height: 8%;
+    text-align: center;
+}
+
+carea.botl
+{
+    width: 50%;
+    text-align: left;
+}
+
+carea.botr
+{
+    right: 0;
+    width: 50%;
+    text-align: right;
+}
+
+carea.all
+{
+    top: 0;
+    height: 100%;
+}
+
+ctext
+{
+    display: inline-block;
+    flex: 1;
+    font-size: small;
+    height: auto;
+}
+
+cimage
+{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex: 1;
+}
+
+card[drag = "true"]
+{
+    z-index: 3;
+}

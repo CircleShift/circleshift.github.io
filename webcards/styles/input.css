@@ -1,0 +1,296 @@
+/*    Begin Input CSS    */
+
+/*    All input    */
+
+input
+{
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	margin: 5px;
+	
+	display: block;
+	z-index: 1;
+}
+
+/*    Button input    */
+
+input[type=button], input[type=submit], button
+{
+    padding: 10px;
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    background-color: #0084ff;
+    
+    font-size: medium;
+
+    transition-duration: 0.2s;
+
+    cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, button:hover
+{
+	background-color: #3ea2ff;
+}
+
+input[type=button]:active, input[type=submit]:active, button:active
+{
+	background-color: #0056a7;
+}
+
+/*    Text, date, number, and time input    */
+
+input[type=text], input[type=date], input[type=time], input[type="number"]
+{
+	border: 2px solid #555;
+	border-radius: 3px;
+	padding: 5px;
+	background-color: white;
+	font-size: 1em;
+}
+
+input[type=text]:hover, input[type=date]:hover, input[type=time]:hover, input[type="number"]:hover
+{
+	border-color: black;
+}
+
+input[type=text]:focus, input[type=date]:focus, input[type=time]:focus, input[type="number"]:focus
+{
+	border-color: #0084ff;
+}
+
+/*    Radial input    */
+
+input[type=radio]
+{	
+	width: 20px;
+	height: 20px;
+	
+	border: 3px solid black;
+	border-radius: 50%;
+	
+	transition-duration: 0.2s;
+	
+	background-color: white;
+	
+	cursor: pointer;
+
+	display: inline-block;
+	vertical-align: middle;
+}
+
+input[type=radio]:checked, input[type=radio]:hover{
+	border-width: 6px;
+}
+
+input[type=radio]:checked
+{
+	background-color: black;
+	border-color: #0084ff;
+}
+
+input[type=radio]:hover
+{
+	border-color: #3ea2ff;
+}
+
+input[type=radio]:active
+{
+	border-color: black;
+}
+
+/*    Checkbox input    */
+
+input[type=checkbox]
+{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+	display: inline-block;
+	vertical-align: middle;
+	
+	width: 20px;
+	height: 20px;
+	
+	border: 3px solid black;
+	
+	border-radius: 2px;
+	
+	transition-duration: 0.2s;
+	
+	background-color: white;
+	
+	cursor: pointer;
+}
+
+input[type=checkbox]:checked
+{
+	border-width: 10px;
+	border-color: #0084ff;
+}
+
+input[type=checkbox]:hover
+{
+	border-color: #3ea2ff;
+}
+
+input[type=checkbox]:active
+{
+	border-color: black;
+}
+
+input[type=checkbox]::after
+{
+	height: 16px;
+	width: 10px;
+	
+	box-sizing: border-box;
+	
+	position: relative;
+	
+	display: block;
+	
+	border-color: black;
+	border-style: solid;
+	border-width: 0px 0px 0px 0px;
+	
+	top: calc(50% - 10px);
+	left: calc(50% - 5px);
+	
+	transform-origin: center;
+	transform: rotate(45deg);
+	
+	content: '';
+}
+
+input[type=checkbox]:checked::after
+{
+	border-width: 0px 3px 3px 0px;
+}
+
+/*    Color input    */
+
+input[type=color]
+{	
+	display: inline-block;
+	
+	vertical-align: middle;
+	
+	height: 20px;
+	width: 20px;
+	
+	margin: 0;
+	padding: 0;
+	
+	border: 0;
+	
+	cursor: pointer;
+}
+
+/*    File input    */
+
+input[type=file]
+{
+	display: none;
+}
+
+/*    Input container    */
+
+div.input-container {
+	margin: 5px;
+	padding: 5px;
+
+	border-radius: 3px;
+}
+
+/*    Color container    */
+
+div.input-container[type=color]
+{
+	text-align: center;
+	
+	background-color: #0084ff;
+	color: white;
+
+	transition-duration: 0.2s;
+	
+	cursor: pointer;
+	
+	width: max-content;
+}
+
+div.input-container[type=color]::after
+{
+	display: inline;
+	
+	vertical-align: middle;
+	
+	content: ' Pick a color';
+}
+
+div.input-container[type=color]:hover
+{
+	background-color: #3ea2ff;
+}
+
+div.input-container[type=color]:active
+{
+	background-color: #0056a7;
+}
+
+/*    File input container    */
+
+div.input-container[type=file]
+{
+	background-color: #0084ff;
+	color: white;
+	
+	transition-duration: 0.2s;
+
+	cursor: pointer;
+	
+	text-align: center;
+
+	width: max-content;
+	height: max-content;
+}
+
+div.input-container[type=file]:hover
+{
+	background-color: #3ea2ff;
+}
+
+div.input-container[type=file]:active
+{
+	background-color: #0056a7;
+}
+
+div.input-container[type=file]::after
+{
+	display: inline;
+	
+	vertical-align: middle;
+	
+	content: attr(data-files);
+}
+
+/*    Radio input container    */
+
+div.input-container[type=radio]::before {
+	display: block;
+	content: 'Radio';
+}
+
+div.input-container[type=radio]
+{
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*    End Input CSS    */
