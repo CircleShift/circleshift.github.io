@@ -1,45 +1,44 @@
-var CardPos = ["top", "topl", "topr", "mid", "midt", "midb", "bot", "botl", "botr", "all"];
+const CardPos = ["top", "topl", "topr", "mid", "midt", "midb", "bot", "botl", "botr", "all"];
 
 // Card class represents one card.
 // Every card should have a deck.
 // Use deck.appendCard or deck.prependCard to make a card visible
 function Card (data) {
-    this.e = this.generateElements(data);
+    this.e = document.createElement("card");
+    this.generateElements(data);
     this.e.style.left = "0px";
     this.e.style.top = "0px";
 }
 
 // Internal
 Card.prototype = {
-    // Main generation func
+    // Main generation func, only for use in contructor
     generateElements: function (data) {
+        while(this.e.firstElementChild != null)
+            this.e.firstElementChild.remove();
+
         switch (typeof data) {
             case "object":
-                return this.generateObjectCard(data);
+                this.generateObjectCard(data, this.e);
+                break;
             case "string":
-                return this.generateBasicCard(data);
+                this.generateBasicCard(data, this.e);
+                break;
+            default:
+                this.generateErrorCard(this.e);
         }
-        let e = document.createElement("card");
-        let t = document.createElement("carea");
-        t.className = "mid";
-        t.innerText = "Card Error: data";
-        e.append(t);
-        return e;
     },
 
     // Generate a card with basic text only
-    generateBasicCard: function (data) {
-        let e = document.createElement("card");
+    generateBasicCard: function (data, el) {
         let t = document.createElement("carea");
         t.className = "mid";
         t.innerText = data;
-        e.appendChild(t);
-        return e;
+        el.appendChild(t);
     },
 
     // Generate a card with rich visuals
-    generateObjectCard: function (data) {
-        let e = document.createElement("card");
+    generateObjectCard: function (data, el) {
 
         // Check for an asset URL
         if (typeof data.assetURL != "string") {
@@ -48,16 +47,14 @@ Card.prototype = {
 
         // Set card styles
         for (let i in data.style) {
-            e.style[i] = data.style[i];
+            el.style[i] = data.style[i];
         }
 
         // Generate card areas.
         for (let i in CardPos) {
             if (typeof data[CardPos[i]] == "object")
-                e.appendChild(this.generateCArea(data[CardPos[i]], CardPos[i], data.assetURL));
+                el.appendChild(this.generateCArea(data[CardPos[i]], CardPos[i], data.assetURL));
         }
-        
-        return e;
     },
 
     generateCArea: function (data, carea, assetURL) {
@@ -92,6 +89,10 @@ Card.prototype = {
         }
 
         return area;
-    }
+    },
 
+    generateErrorCard: function(el)
+    {
+        this.generateBasicCard("Card Error: data", el);
+    }
 };

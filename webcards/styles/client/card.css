@@ -3,20 +3,22 @@ card
     position: absolute;
     display: block;
     width: 150px;
-    height: 225px;
-    background-color: white;
-    border: 6px double #bbb;
+    height: 230px;
+    background-color: var(--card-bg);
+    color: var(--card-color);
+    border: 2px solid var(--card-border);
     border-radius: 10px;
     transition-duration: 0.2s;
     cursor: pointer;
     flex-direction: column;
     overflow: hidden;
     user-select: none;
+    box-sizing: border-box;
 }
 
 card:hover
 {
-    box-shadow: 0 0 10px #0f0;
+    box-shadow: 0 0 10px var(--card-hover);
 }
 
 carea
@@ -27,6 +29,7 @@ carea
     display: flex;
     vertical-align: middle;
     width: 100%;
+    box-sizing: border-box;
 }
 
 carea.top, carea.topl, carea.topr
@@ -110,7 +113,43 @@ cimage
     flex: 1;
 }
 
-card[drag = "true"]
+card[drag=true]
 {
     z-index: 3;
+}
+
+/*  Deck  */
+
+deck {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    top: 0;
+    left: 0;
+
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+deck > card {
+    transform: translate(-75px, calc(-115px + ( var(--cpos) * 3px )));
+}
+
+deck[mode="strip-hl"] > card {
+    transform: translate(calc(-75px - ( var(--cpos) * 75px )), -115px);
+}
+
+deck[mode="strip-hr"] > card {
+    transform: translate(calc(-75px + ( var(--cpos) * 75px )), -115px);
+}
+
+deck[mode="strip-vu"] > card {
+    transform: translate(-75px, calc(-115px - ( var(--cpos) * 115px )));
+}
+
+deck[mode="strip-vd"] > card {
+    transform: translate(-75px, calc(-115px + ( var(--cpos) * 115px )));
 }

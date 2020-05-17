@@ -1,6 +1,6 @@
 // Deck class represents multiple cards.
 // Can be arranged in multiple ways.
-function Deck (options = {}){
+function Deck (options = {mode: "stack", smode: "one", sct: 0, pos: [0, 0]}){
     this.cards = [];
     
     // View mode
@@ -11,19 +11,19 @@ function Deck (options = {}){
     //          left (strip-hl)
     //          right (strip-hr)
     //      vertical
-    //          top (strip-vt)
-    //          bottom (strip-vb)
-    this.mode = options.mode;
+    //          up (strip-vu)
+    //          down (strip-vd)
+    this.inf = options.mode == "infdraw";
 
-    // Select mode
-    //  above
-    //  below
-    //  around
-    //  one
-    //  all
+    // Select mode - controls what other cards are selected when one card is selected
+    //  above - selectes cards above the selected one
+    //  below - selects cards below the selected one
+    //  around - selects cards above and below
+    //  one - selects only card chosen
+    //  all - selects all cards when card selected
     this.smode = options.smode;
     
-    // Select count (-1 = all available)
+    // Select count (negative defaults to 0)
     //  above - controls number of cards above clicked are selected
     //  below - controls number of cards below clicked are selected
     //  around
@@ -31,7 +31,7 @@ function Deck (options = {}){
     //      array - [first number: number above selected] [second number: number below selected]
     //  one - no effect
     //  all - no effect
-    this.sct = options.sct;
+    this.sct = options.sct > 0 ? options.sct : 0;
     
     // Position
     //  array of where the deck is centered
@@ -39,6 +39,9 @@ function Deck (options = {}){
     this.y = options.pos[1];
     
     this.e = document.createElement("deck");
+    this.e.style.left = this.x + "px";
+    this.e.style.top = this.y + "px";
+    this.e.setAttribute("mode", options.mode);
 }
 
 Deck.prototype = {

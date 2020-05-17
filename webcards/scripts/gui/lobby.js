@@ -131,11 +131,12 @@ Lobby.prototype = {
     },
 
     // Called when the WebSocket state has changed.
-    setState: function(text, color, server) {
-        this.e.status.style.backgroundColor = color;
-        this.e.status.innerText = text;
+    setState: function(text, s, server) {
+        this.e.status.setAttribute("s", s);
+        if(this.e.status.innerText != "Error" || ( this.e.status.innerText == "Error" && text != "Closed"))
+            this.e.status.innerText = text;
         this.e.addr.innerText = server;
-        this.top.setColor(color);
+        this.top.setStatus(s);
     },
 
     // Called when we are resetting the game.
@@ -144,7 +145,7 @@ Lobby.prototype = {
             this.e.games.removeChild(this.e.games.firstElementChild)
         }
 
-        this.setState("Connecting", "#DA0", this.e.addr.innerText);
+        this.setState("Connecting", "loading", this.e.addr.innerText);
         this.init = false;
     }
 };
@@ -165,8 +166,8 @@ function TopBar(el) {
 
 TopBar.prototype = {
     // Set color of status bar
-    setColor: function(color) {
-        this.status.style.backgroundColor = color;
+    setStatus: function(s) {
+        this.status.setAttribute("s", s);
     },
 
     // Toggle showing the new game screen

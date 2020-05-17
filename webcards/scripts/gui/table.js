@@ -1,4 +1,4 @@
-// Table represents and manages the actual game.  It accepts inputs from the server and tries to queries the server when the player makes a move.
+// Table represents and manages the actual game.  It accepts inputs from the server and tries to query the server when the player makes a move.
 function Table(el, soc) {
     this.root = el;
     this.soc = soc;
@@ -21,8 +21,6 @@ Table.prototype = {
             setTimeout(this.root.setAttribute.bind(this.root), 50, "state", "close");
         }
     },
-
-    
 
     handleClose: function() {
         this.reset();

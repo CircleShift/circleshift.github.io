@@ -26,13 +26,14 @@ Client.prototype = {
         if(m.type == "error" || m.type == "closed") {
             var t = m.type;
             t = t[0].toUpperCase() + t.slice(1)
-            this.lob.setState(t, "#D00", this.soc.server);
+            this.lob.setState(t, "closed", this.soc.server);
             this.tab.handleClose();
             return;
         }
 
         switch(this.state) {
             case "handshake":
+                this.lob.setState("Connected", "ok", this.soc.server);
                 this.handshake(m);
                 break;
             case "lobby":
@@ -49,7 +50,7 @@ Client.prototype = {
             case "verr":
                 this.soc.close();
                 alert(`Error connecting to server: version of client (${this.version}) not accepted.`);
-                console.error("Error connecting to server: version of client (${this.version}) not accepted.");
+                console.error(`Error connecting to server: version of client (${this.version}) not accepted.`);
                 console.error(m.data);
                 return;
             case "lobby":

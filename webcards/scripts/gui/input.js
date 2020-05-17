@@ -1,24 +1,39 @@
-var inputFuncs = {
-    createInput: function(type = "text", wrapped = false, id) {
+function customSelectValue (el) {
+    var sel = el.getAttribute("selected");
+        
+    if(typeof sel != "undefined") {
+        return el.children[parseInt(sel)].getAttribute("value");
+    }
+
+    return "";
+}
+
+function customSelectOption (el) {
+    var sn = Array.prototype.indexOf.call(el.parentElement.children, el);
+    var psn = el.parentElement.getAttribute("selected");
+
+    if(typeof psn == "string")
+        el.parentElement.children[parseInt(psn)].setAttribute("selected", false);
+
+    if(typeof sn == "string")
+        el.parentElement.setAttribute("selected", parseInt(sn));
+
+    el.setAttribute("selected", true);
+    el.parentElement.setAttribute("selected", parseInt(sn));
+}
+
+var InputFuncs = {
+    createInput: function(type = "text", id) {
         var el = document.createElement("input");
         el.setAttribute("type", type);
         
         if(typeof id == "string")
             el.setAttribute("id", id);
 
-        if(wrapped) {
-            var wrapper = document.createElement("div");
-            wrapper.className = "input-container";
-            wrapper.setAttribute("type", type);
-            wrapper.setAttribute("onclick", "this.firstElementChild.click()");
-            wrapper.appendChild(el);
-            wrapper.input = el;
-            return wrapper;
-        }
-
         el.getValue = function () {
             return this.value;
         }
+
         return el;
     },
 
@@ -31,26 +46,27 @@ var inputFuncs = {
     },
 
     colorInput: function(value, id) {
-        var el = this.createInput("color", true, id);
+        var el = this.createInput("color", id);
         el.value = value;
         return el;
     },
 
     textInput: function(value, placeholder, id) {
-        var el = this.createInput("text", false, id);
+        var el = this.createInput("text", id);
         el.setAttribute("placeholder", placeholder);
         el.value = value;
         return el;
     },
 
     numberInput: function(value, id) {
-        var el = this.createInput("number", false, id);
+        var el = this.createInput("number", id);
         el.value = value;
         return el;
     },
 
+    //To fix
     fileInput: function(value, id) {
-        var el = this.createInput("file", true, id);
+        var el = this.createInput("file", id);
         
         el.value = value;
         
@@ -91,11 +107,21 @@ var inputFuncs = {
         return el;
     },
 
-    radioInputs: function(group, names, values, checked = 0) {
-        var wrapper = document.createElement("div");
-        wrapper.className = "input-container";
-        wrapper.setAttribute("type", "radio");
-        
+    radioInputs: function(group, names, values, checked = 0, id) {
+
+        let toWrap = [];
+
+        for(let i = 0; i < values.length; i++) {
+            toWrap.push(this.inputLabel(names[i], group+"-"+i));
+            if(i == checked)
+                toWrap.push(this.radioInput(group, values[i], true, group+"-"+i));
+            else
+                toWrap.push(this.radioInput(group, values[i], false, group+"-"+i));
+            toWrap.push(document.createElement("br"));
+        }
+
+        var wrapper = this.wrapInputs("radio", ...toWrap);
+
         wrapper.getValue = function() {
             for(let i = 0; i < this.children.length; i++){
                 if(this.children[i].checked)
@@ -103,30 +129,62 @@ var inputFuncs = {
             }
         };
 
-        for(let i = 0; i < values.length; i++) {
-            wrapper.appendChild(this.inputLabel(names[i], group+"-"+i));
-            if(i == checked)
-                wrapper.appendChild(this.radioInput(group, values[i], true, group+"-"+i));
-            else
-                wrapper.appendChild(this.radioInput(group, values[i], false, group+"-"+i));
-            wrapper.appendChild(document.createElement("br"));
-        }
+        if(typeof id == "string")
+            wrapper.setAttribute("id", id);
 
         return wrapper;
     },
 
-    wrapInput: function(el) {
+    selectOption: function(text, value, selected) {
+        var so = document.createElement("div");
+        so.innerText = text;
+        so.setAttribute("value", value);
+        so.addEventListener("mousedown", customSelectOption.bind(null, so));
+
+        if(selected === true)
+            so.setAttribute("selected", true);
+
+        return so
+    },
+
+    selectInput: function(names, values, id, select = 0) {
+        var se = document.createElement("div");
+        se.className = "input-select";
+        se.setAttribute("tabindex", 0);
+        se.setAttribute("selected", select);
+
+        for(let i in names)
+        {
+            se.appendChild(this.selectOption(names[i], values[i], i == select));
+        }
+
+        if(typeof id == "string")
+            se.setAttribute("id", id);
         
+        var wrapper = this.wrapInputs("select", se);
+        wrapper.getValue = customSelectValue.bind(null, se);
+        wrapper.setAttribute("tabindex", 0);
+
+        return wrapper;
+    },
+
+    wrapInputs: function(type, ...el) {
+
+        var wrapper = document.createElement("div");
+        wrapper.className = "input-container";
+        wrapper.setAttribute("type", type);
+
+        for(let i = 0; i < el.length; i++)
+        {
+            wrapper.appendChild(el[i]);
+        }
+
+        return wrapper;
     }
 };
 
-function Settings () {
-    this.settings = {
-        username: {
-            type: "text",
-            args: [Math.floor(Math.random() * 100000), "Username", "userName"]
-        }
-    };
+function Settings (settings = {}) {
+    this.settings = settings;
 
     this.genSettings();
 }

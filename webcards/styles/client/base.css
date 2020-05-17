@@ -11,6 +11,8 @@ html, body {
 
     display: block;
 
+    background-color: var(--main-bg);
+    color: var(--main-color);
 }
 
 /*    Topbar rules    */
@@ -19,7 +21,7 @@ html, body {
 {
     position: fixed;
 
-    background-color: white;
+    background-color: var(--gui-bg-main);
 
     top: 0;
     left: 0;
@@ -40,18 +42,24 @@ html, body {
 button.top-button
 {
     border-radius: 0;
-    background-color: white;
-    color: black;
+    background-color: var(--top-bg-button);
+    color: var(--top-color-button);
     flex: 1;
 
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-left: 1px solid var(--top-border);
+    border-right: 1px solid var(--top-border);
 
     transition-duration: 0.2s;
 }
 
 button.top-button:hover {
-    background-color: #ddd;
+    background-color: var(--top-bg-button-hover);
+    color: var(--top-color-button-hover);
+}
+
+button.top-button:active {
+    background-color: var(--top-bg-button-active);
+    color: var(--top-color-button-active);
 }
 
 .top-buttons > button:first-child
@@ -68,20 +76,34 @@ div.new-game
 {
     flex: 1;
     flex-grow: 1;
-    border-top: 2px solid black;
+    border-top: 2px solid var(--top-border);
 }
 
 div.mobile-settings
 {
     flex: 1;
     flex-grow: 1;
-    border-top: 2px solid black;
+    border-top: 2px solid var(--top-border);
 }
 
 div.topbar > div.status
 {
     height: 5px;
     flex-basis: auto;
+
+    background-color: var(--server-bg-loading);
+}
+
+div.topbar > div.status[s=loading] {
+    background-color: var(--server-bg-loading);
+}
+
+div.topbar > div.status[s=ok] {
+    background-color: var(--server-bg-ok);
+}
+
+div.topbar > div.status[s=closed] {
+    background-color: var(--server-bg-closed);
 }
 
 /*    Content rules    */
@@ -112,9 +134,10 @@ div.stats > div > span:last-child {
 }
 
 div.game {
-    background-color: white;
+    background-color: var(--gui-bg-game);
+    color: var(--gui-color-game);
     border-radius: 5px;
-    box-shadow: lightgray 3px 3px 2px;
+    box-shadow: var(--gui-shadow-game) 3px 3px 2px;
     box-sizing: border-box;
     margin-bottom: 10px;
 }
@@ -140,9 +163,11 @@ div.settings {
     animation-duration: 0.8s;
 
     background-color: rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
 }
 
-.table[state="open"] ,.table[state="close"]{
+.table[state=open] ,.table[state=close]{
     animation-name: slide-in;
     animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1);
     animation-iteration-count: 1;
@@ -150,11 +175,11 @@ div.settings {
     animation-fill-mode: forwards;
 }
 
-.table[state="close"] {
+.table[state=close] {
     animation-direction: reverse;
 }
 
-.table[state="closed"] {
+.table[state=closed] {
     transform: translate(0, -100vh);
     opacity: 0;
 }

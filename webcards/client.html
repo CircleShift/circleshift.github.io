@@ -16,11 +16,16 @@
         <link rel="stylesheet" type="text/css" href="styles/client/mobile.css">
         <link rel="stylesheet" type="text/css" href="styles/client/card.css">
 
+        <link id="theme" rel="stylesheet" type="text/css" href="styles/themes/colors-base.css">
+
         <link rel="icon" sizes="32x32" href="images/wc-icon-32.png">
         <link rel="icon" sizes="48x48" href="images/wc-icon-48.png">
         <link rel="icon" sizes="96x96" href="images/wc-icon-96.png">
         <link rel="icon" sizes="144x144" href="images/wc-icon-144.png">
         <link rel="icon" sizes="288x288" href="images/wc-icon-288.png">
+
+        <script src="scripts/cookie.js"></script>
+        <script src="scripts/theme.js"></script>
 
         <script src="scripts/cards/card.js"></script>
         <script src="scripts/cards/deck.js"></script>
@@ -40,7 +45,7 @@
 
     <body>
         
-        <div class="table" state="closed">
+        <div class="table" state="closed" onmouseup="d.stopDraggingAll()">
 
         </div>
 
@@ -60,13 +65,13 @@
                 <button id="set">Accept Settings</button>
             </div>
             
-            <div class="status" style="background-color: #DA0;"></div>
+            <div class="status"></div>
         </div>
 
         <div class="lobby">
 
             <div class="server">
-                <span style="background-color: #DA0; font-weight: bold; color: white;" class="status">Connecting</span>
+                <span style="font-weight: 700;" class="status">Connecting</span>
                 <span class="addr"></span>
             </div>
 
@@ -126,6 +131,14 @@
             });
             var c2 = new Card({
                 all: [
+                    {
+                        type: "image",
+                        image: "assets/standard/heart.svg"
+                    },
+                    {
+                        type: "image",
+                        image: "assets/standard/heart.svg"
+                    },
                     {
                         type: "image",
                         image: "assets/standard/heart.svg"
