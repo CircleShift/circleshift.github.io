@@ -44,17 +44,20 @@ function Deck (options = {mode: "stack", smode: "one", sct: 0, pos: [0, 0]}){
     this.e.setAttribute("mode", options.mode);
 }
 
+//Decks work as FIFO
 Deck.prototype = {
     // Add a card to the front of the deck
     appendCard: function(card) {
         this.cards.push(card);
         this.e.appendChild(card.e);
+        this.updatePos();
     },
 
     // Add a card to the back of the deck
     prependCard: function(card) {
         this.cards.unshift(card);
         this.e.prepend(card.e);
+        card.setPos(this.cards.length - 1);
     },
 
     // Add a card at the index specified
@@ -105,5 +108,11 @@ Deck.prototype = {
 
         this.e.removeChild(this.cards[index].e);
         return this.cards.splice(index, 1)[0];
+    },
+
+    updatePos: function() {
+        let len = this.cards.length - 1;
+        for(let i in this.cards)
+            this.cards[i].setPos(len-i);
     }
 };

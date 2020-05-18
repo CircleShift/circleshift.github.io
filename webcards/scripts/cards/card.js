@@ -94,5 +94,10 @@ Card.prototype = {
     generateErrorCard: function(el)
     {
         this.generateBasicCard("Card Error: data", el);
+    },
+
+    setPos: function(p)
+    {
+        this.e.style.setProperty("--cpos", p);
     }
 };

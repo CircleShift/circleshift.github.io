@@ -24,24 +24,36 @@ MultiDrag.prototype = {
         return this.drag.length - 1;
     },
 
-    startDragging: function(mevent) {
+    dragging: function(e) {
+        for(let i in this.drag) {
+            if(this.drag[i].e == e)
+                return true;
+        }
+        return false;
+    },
+
+    startDragging: function(e) {
         if(this.del)
             return;
 
-        console.log(mevent);
+        console.log(e);
 
-        if(mevent.button != 0)
+        if(e.button != 0)
             return;
 
-        let pos = mevent.target.getBoundingClientRect();
+        let pos
+        if(e.target.parentElement != null)
+            pos = e.target.parentElement.getBoundingClientRect();
+        else
+            pos = e.target.getBoundingClientRect();
 
         return this.addDragEl(
-            mevent.currentTarget,
-            mevent.clientX - pos.left,
-            mevent.clientY - pos.top,
-            mevent.currentTarget.style.left,
-            mevent.currentTarget.style.top,
-            mevent.currentTarget.style.transitionDuration
+            e.target,
+            e.pageX,
+            e.pageY,
+            e.target.style.left,
+            e.target.style.top,
+            e.target.style.transitionDuration
         );
     },
 
@@ -76,8 +88,8 @@ MultiDrag.prototype = {
 
     update: function(e) {
         for (let i = 0; i < this.drag.length && !this.del; i++) {
-            this.drag[i].e.style.left = e.clientX - this.drag[i].osx + "px";
-            this.drag[i].e.style.top = e.clientY - this.drag[i].osy + "px";
+            this.drag[i].e.style.left = e.pageX - this.drag[i].osx + "px";
+            this.drag[i].e.style.top = e.pageY - this.drag[i].osy + "px";
         }
     }
 };

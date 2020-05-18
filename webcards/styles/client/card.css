@@ -21,6 +21,10 @@ card:hover
     box-shadow: 0 0 10px var(--card-hover);
 }
 
+card > * {
+    pointer-events: none;
+}
+
 carea
 {
     padding-left: 2px;
@@ -122,8 +126,8 @@ card[drag=true]
 
 deck {
     position: absolute;
-    width: 0;
-    height: 0;
+    min-width: 160px;
+    min-height: 240px;
 
     top: 0;
     left: 0;
@@ -132,24 +136,32 @@ deck {
     display: flex;
     justify-content: center;
     align-content: center;
+
+    border-radius: 10px;
+
+    transition-duration: 0.2s;
+}
+
+deck:hover {
+    box-shadow: 0 0 5px var(--deck-hover);
 }
 
 deck > card {
-    transform: translate(-75px, calc(-115px + ( var(--cpos) * 3px )));
+    transform: translate(0, calc(var(--cpos) * 3px ));
 }
 
 deck[mode="strip-hl"] > card {
-    transform: translate(calc(-75px - ( var(--cpos) * 75px )), -115px);
+    transform: translate(calc(var(--cpos) * -75px), 0);
 }
 
 deck[mode="strip-hr"] > card {
-    transform: translate(calc(-75px + ( var(--cpos) * 75px )), -115px);
+    transform: translate(calc(var(--cpos) * 75px), 0);
 }
 
 deck[mode="strip-vu"] > card {
-    transform: translate(-75px, calc(-115px - ( var(--cpos) * 115px )));
+    transform: translate(0, calc(var(--cpos) * -115px ));
 }
 
 deck[mode="strip-vd"] > card {
-    transform: translate(-75px, calc(-115px + ( var(--cpos) * 115px )));
+    transform: translate(0, calc(var(--cpos) * 115px ));
 }

@@ -45,7 +45,7 @@
 
     <body>
         
-        <div class="table" state="closed" onmouseup="d.stopDraggingAll()">
+        <div class="table" state="closed" onmouseup="md.stopDraggingAll()">
 
         </div>
 
@@ -120,7 +120,7 @@
 
 
             // Live testing purposes only
-            var d = new MultiDrag();
+            var md = new MultiDrag();
             var c1 = new Card({
                 all: [
                     {
@@ -145,14 +145,16 @@
                     }
                 ]
             });
+            var d = new Deck();
+            d.appendCard(c2);
+            d.appendCard(c1);
             function test() {
-                c1.e.addEventListener("mousedown", d.startDragging.bind(d));
-                c1.e.addEventListener("mouseup", d.stopDraggingAll.bind(d));
-                c2.e.addEventListener("mousedown", d.startDragging.bind(d));
-                c2.e.addEventListener("mouseup", d.stopDraggingAll.bind(d));
+                c1.e.addEventListener("mousedown", md.startDragging.bind(md));
+                c1.e.addEventListener("mouseup", md.stopDraggingAll.bind(md));
+                c2.e.addEventListener("mousedown", md.startDragging.bind(md));
+                c2.e.addEventListener("mouseup", md.stopDraggingAll.bind(md));
 
-                game.tab.root.append(c1.e);
-                game.tab.root.append(c2.e);
+                game.tab.root.append(d.e);
                 game.tab.openTable();
             }
         </script>
