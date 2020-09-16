@@ -1,24 +1,26 @@
-function Theme(){
-    this.t = document.getElementById("theme");
-}
+'use strict';
 
-Theme.prototype = {
-    init: function() {
+class Theme{
+    static theme = document.getElementById("theme");
+
+    static init()
+    {
         if(Cookies.getCookie("theme") == ""){
             Cookies.setYearCookie("theme", "styles/themes/colors-base.css");
         }
-    },
-
-    restore: function() {
-        this.init();
-        this.t.setAttribute("href", Cookies.getCookie("theme") + "?v=" + Date.now());
-    },
-
-    set: function(sheet) {
-        Cookies.setYearCookie("theme", sheet);
-        this.restore();
     }
-};
 
-var GlobalTheme = new Theme();
-GlobalTheme.restore();
+    static restore()
+    {
+        Theme.init();
+        Theme.theme.setAttribute("href", Cookies.getCookie("theme") + "?v=" + Date.now());
+    }
+
+    static set(sheet)
+    {
+        Cookies.setYearCookie("theme", sheet);
+        Theme.restore();
+    }
+}
+
+Theme.restore();

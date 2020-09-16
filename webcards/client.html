@@ -34,6 +34,7 @@
         <script src="scripts/gui/input.js"></script>
         <script src="scripts/gui/lobby.js"></script>
         <script src="scripts/gui/table.js"></script>
+        <script src="scripts/gui/chat.js"></script>
 
         <script src="scripts/socket/message.js"></script>
         <script src="scripts/socket/sock.js"></script>
@@ -45,14 +46,14 @@
 
     <body>
         
-        <div class="table" state="closed" onmouseup="md.stopDraggingAll()">
+        <div class="table" state="closed">
 
         </div>
 
         <div class="topbar" style="height: auto;">
             <div class="top-buttons">
-                <button id="newgame" class="top-button" onclick="game.lob.newGame()"></button>
-                <button id="settings" class="top-button" onclick="game.lob.mobileSettings()"></button>
+                <button id="newgame" class="top-button" onclick="game.lobby.newGame()"></button>
+                <button id="settings" class="top-button" onclick="game.lobby.mobileSettings()"></button>
                 <button id="reset" class="top-button" onclick="game.reset()"></button>
             </div>
 
@@ -113,50 +114,25 @@
             </div>
         </div>
 
+        <div class="chat">
+            <button class="toggle-chat">Toggle Chat</button>
+
+            <div class="chat-select">
+            </div>
+
+            <div class="chat-text">
+            </div>
+
+            <div class="chat-input">
+                <input type="text" placeholder="Chat..."/>
+                <button>Send</button>
+            </div>
+        </div>
+
         <script>
             var params = new URLSearchParams((new URL(window.location)).search);
             var game = new Client(params.get("s"), params.get("g"));
             setTimeout(game.init.bind(game), 100);
-
-
-            // Live testing purposes only
-            var md = new MultiDrag();
-            var c1 = new Card({
-                all: [
-                    {
-                        type: "image",
-                        image: "assets/standard/diamond.svg"
-                    }
-                ]
-            });
-            var c2 = new Card({
-                all: [
-                    {
-                        type: "image",
-                        image: "assets/standard/heart.svg"
-                    },
-                    {
-                        type: "image",
-                        image: "assets/standard/heart.svg"
-                    },
-                    {
-                        type: "image",
-                        image: "assets/standard/heart.svg"
-                    }
-                ]
-            });
-            var d = new Deck();
-            d.appendCard(c2);
-            d.appendCard(c1);
-            function test() {
-                c1.e.addEventListener("mousedown", md.startDragging.bind(md));
-                c1.e.addEventListener("mouseup", md.stopDraggingAll.bind(md));
-                c2.e.addEventListener("mousedown", md.startDragging.bind(md));
-                c2.e.addEventListener("mouseup", md.stopDraggingAll.bind(md));
-
-                game.tab.root.append(d.e);
-                game.tab.openTable();
-            }
         </script>
     </body>
 

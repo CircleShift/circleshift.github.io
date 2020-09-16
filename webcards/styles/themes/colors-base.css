@@ -18,15 +18,16 @@
     --gui-shadow-game: gray;
 
     --top-border: black;
-    --top-bg: white;
-    --top-bg-button: white;
-    --top-bg-button-hover: #ddd;
-    --top-bg-button-active: ;
+    --top-bg: #eee;
+    --top-bg-button: #eee;
+    --top-bg-button-hover: #ccc;
+    --top-bg-button-active: white;
     --top-color-button: black;
     --top-color-button-hover: black;
     --top-color-button-active: black;
 
     /*  Table  */
+    --table-bg: rgb(20, 110, 50);
 
     /*  Card defaults  */
     --card-color: black;
@@ -34,7 +35,8 @@
     --card-border: #bbb;
     --card-hover: #0f0;
 
-    --deck-hover: #3ea2ff;
+    --deck-shadow: #2696ff;
+    --deck-hover: #73bbff;
 
     /*  Input  */
     
@@ -75,4 +77,18 @@
 
     --input-bg-multi: rgba(30, 30, 30, 0.3);
     --input-bg-multi-hover: rgba(200, 200, 200, 0.3);
+
+    /*  Chat  */
+    --chat-color: black;
+    --chat-bg: white;
+
+    --chat-bg-text: rgba(0, 0, 0, 0.2);
+
+    --chat-bg-input: rgb(220, 220, 220);
+    --chat-bg-input-hover: rgb(220, 220, 220);
+    --chat-bg-input-active: rgb(220, 220, 220);
+
+    --chat-bg-inactive: rgb(80, 80, 80);
+    --chat-bg-inactive-hover: rgb(130, 130, 130);
+    --chat-bg-inactive-active: rgb(40, 40, 40);
 }

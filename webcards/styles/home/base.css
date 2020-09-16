@@ -35,7 +35,7 @@ div.content {
 }
 
 a, button {
-    font-size: 24px;
+    font-size: 1em;
     display: block;
     color: white;
     box-sizing: border-box;
@@ -51,4 +51,58 @@ a, button {
     text-decoration: none;
 
     margin-top: 10px;
+}
+
+
+
+div.content > div.prev {
+    width: 100%;
+    margin: 10px;
+
+    border-radius: 5px;
+
+    display: block;
+
+    padding: 0;
+}
+
+div.prev > a{
+    display: inline-block;
+    width: 80%;
+    margin: 0;
+    padding: 5px;
+    border-radius: 0;
+}
+
+div.prev > a:first-of-type {
+    border-top-left-radius: 5px;
+}
+
+div.prev > a:last-of-type {
+    border-bottom-left-radius: 5px;
+}
+
+div.prev > button {
+    display: inline-block;
+    width: 20%;
+    margin: 0;
+    background-color: #ff1e00;
+    padding: 5px;
+    border-radius: 0;
+}
+
+div.prev > button:first-of-type {
+    border-top-right-radius: 5px;
+}
+
+div.prev > button:last-of-type {
+    border-bottom-right-radius: 5px;
+}
+
+div.prev > button:hover {
+    background-color: #ff5741;
+}
+
+div.prev > button:active {
+    background-color: #9c1200;
 }

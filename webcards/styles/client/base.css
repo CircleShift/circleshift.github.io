@@ -13,6 +13,8 @@ html, body {
 
     background-color: var(--main-bg);
     color: var(--main-color);
+
+    overflow: hidden;
 }
 
 /*    Topbar rules    */
@@ -140,6 +142,9 @@ div.game {
     box-shadow: var(--gui-shadow-game) 3px 3px 2px;
     box-sizing: border-box;
     margin-bottom: 10px;
+    padding: 5px;
+
+    text-align: left;
 }
 
 div.game:last-child {
@@ -162,7 +167,7 @@ div.settings {
 
     animation-duration: 0.8s;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--table-bg);
 
     overflow: hidden;
 }
@@ -194,4 +199,119 @@ div.settings {
         transform: translate(0, 0);
         opacity: 1;
     }
+}
+
+/*    Chat    */
+
+div.chat {
+    border-top-left-radius: 10px;
+    background-color: var(--chat-bg);
+    color: var(--chat-color);
+
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: -50vw;
+
+    box-sizing: border-box;
+
+    top: 50vh;
+
+    transition-duration: 0.2s;
+
+    padding: 5px;
+
+    z-index: 4;
+}
+
+div.chat[show=true] {
+    right: 0;
+}
+
+button.toggle-chat {
+    position: absolute;
+    bottom: 5px;
+    left: -5px;
+    transform-origin: bottom left;
+    transform: rotate(-90deg);
+}
+
+div.chat > div {
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+div.chat-select, div.chat-input {
+    flex-basis: content;
+    display: flex;
+}
+
+div.chat-text {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    background-color: var(--chat-bg-text);
+    border-radius: 10px;
+    border: 5px solid rgba(0, 0, 0, 0);
+}
+
+div.chat-select > button {
+    flex: 1;
+
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+div.chat-select > button[active="false"] {
+    background-color: var(--chat-bg-inactive);
+}
+
+div.chat-select > button[active="false"]:hover {
+    background-color: var(--chat-bg-inactive-hover);
+}
+
+div.chat-select > button[active="false"]:active {
+    background-color: var(--chat-bg-inactive-active);
+}
+
+div.chat-select > button:first-child {
+    margin-left: 0;
+}
+
+div.chat-select > button:last-child {
+    margin-right: 0;
+}
+
+div.chat-input > input {
+    flex: 5;
+
+    margin: 0;
+    margin-right: 5px;
+
+    border-radius: 5px;
+
+    transition-duration: 0.2s;
+    border: none;
+
+    background-color: var(--chat-bg-input);
+}
+
+div.chat-input > input:hover {
+    background-color: var(--chat-bg-input-hover);
+}
+
+div.chat-input > input:focus {
+    background-color: var(--chat-bg-input-active);
+}
+
+div.chat-input > button {
+    flex: 1;
+}
+
+div.chat-text > div {
+    word-wrap: break-word;
+    word-break: break-all;
 }

@@ -35,19 +35,82 @@
             <p style="font-size: 30px; font-weight: normal;">Web<span style="color: #0084ff; font-weight: bold;">Cards</span></p>
             <div>
                 <div class="input-container" tabindex="0" type="select">
-                    <div id="protocol" tabindex="0" selected="0" class="input-select">
-                        <div value="ws://" onmousedown="customSelectOption(this)" selected="true">ws</div>
-                        <div value="wss://" onmousedown="customSelectOption(this)">wss</div>
+                    <div id="protocol" tabindex="0" selected="1" class="input-select">
+                        <div value="ws://" onmousedown="MakeInput.selOption(this)">ws</div>
+                        <div value="wss://" onmousedown="MakeInput.selOption(this)" selected="true">wss</div>
                     </div>
                 </div>
 
-                <input id="addr" type="text" value="127.0.0.1">
+                <input id="addr" type="text" value="localhost">
 
                 <input id="port" type="number" value="4040">
             </div>
 
-            <button id="conn" onclick="connect()">Connect</a>
+            <button id="conn" onclick="connect()">Connect</button>
+
+            <div id="prev" class="prev">
+
+            </div>
+
+            <a style="border: none; padding: 0; display: contents; margin: 0;" href="http://vanilla-js.com/"><img src="images/vanilla.png"></a>
         </div>
+
+        <script>
+            var prev = Cookies.getCookie("prevAddr");
+            var prevEl = document.getElementById("prev");
+
+            function hasAddr(url) {
+                let urls = prev.split(",");
+
+                for(let i in urls)
+                {
+                    if(urls[i] == url)
+                        return true;
+                }
+
+                return false;
+            }
+
+            function addAddr(url) {
+                if(hasAddr(url))
+                    return;
+
+                if(prev != "")
+                    prev = prev + "," + url;
+                else
+                    prev = url;
+                
+                Cookies.setYearCookie("prevAddr", prev);
+            }
+
+            function delAddr(el, btn) {
+                let url = el.innerText;
+                let urls = prev.split(",");
+                urls.splice(urls.indexOf(url), 1);
+                Cookies.setCookie("prevAddr", urls.join());
+                el.remove();
+                btn.remove();
+                prev = Cookies.getCookie("prevAddr");
+            }
+
+            let urls = prev.split(",");
+            for(let i in urls) {
+                if(urls[i] == "")
+                    continue;
+                
+                let a = document.createElement("a");
+                a.innerText = urls[i];
+                a.href = "client.html?s=" + urls[i] + "&g=-1";
+                
+                let b = document.createElement("button");
+                b.innerText = "X";
+                b.onclick = delAddr.bind(null, a, b);
+
+                prevEl.appendChild(a);
+                prevEl.append(b);
+            }
+
+        </script>
 
         <script>
             var proto = document.getElementById("protocol");
@@ -60,9 +123,10 @@
             //p.onchange = updateLink;
 
             function connect() {
-                var url = "client.html?s=" + customSelectValue(proto) + addr.value + ":" + port.value + "&g=-1";
+                let concat = MakeInput.selValue(proto) + addr.value + ":" + port.value;
+                addAddr(concat);
                 //c.setAttribute("href", url);
-                window.location = url;
+                window.location = "client.html?s=" + concat + "&g=-1";
             }
         </script>
     </body>

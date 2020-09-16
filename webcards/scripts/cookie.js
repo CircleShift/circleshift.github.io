@@ -1,8 +1,7 @@
-function CookieManager() {
-}
+'use strict';
 
-CookieManager.prototype = {
-    getCookie: function(name){
+class Cookies {
+    static getCookie(name){
         let cookies = document.cookie.split(";");
         for(let i in cookies) {
             let cname = cookies[i].trim().split("=")[0];
@@ -11,9 +10,9 @@ CookieManager.prototype = {
             }
         }
         return "";
-    },
+    }
 
-    setCookie: function(name, value, data={}) {
+    static setCookie(name, value, data = {}) {
         let extra = "";
 
         for(let key in data)
@@ -22,18 +21,16 @@ CookieManager.prototype = {
         }
 
         document.cookie = name + "=" + value + extra;
-    },
+    }
 
-    setYearCookie: function(name, value) {
+    static setYearCookie(name, value) {
         var date = new Date(Date.now());
         date.setFullYear(date.getFullYear() + 1);
-        this.setCookie(name, value, {expires: date.toUTCString()});
-    },
-
-    removeCookie: function(name) {
-        var date = new Date(0);
-        this.setCookie(name, "", {expires: date.toUTCString()});
+        Cookies.setCookie(name, value, {expires: date.toUTCString()});
     }
-};
 
-var Cookies = new CookieManager();
+    static removeCookie(name) {
+        var date = new Date(0);
+        Cookies.setCookie(name, "", {expires: date.toUTCString()});
+    }
+}

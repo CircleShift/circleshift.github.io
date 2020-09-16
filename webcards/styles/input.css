@@ -17,7 +17,7 @@ input, select
 
 /*    Button input    */
 
-input[type=button], input[type=submit], button
+input[type=button], input[type=submit], button, a
 {
     padding: 10px;
 
@@ -34,12 +34,12 @@ input[type=button], input[type=submit], button
     cursor: pointer;
 }
 
-input[type=button]:hover, input[type=submit]:hover, button:hover
+input[type=button]:hover, input[type=submit]:hover, button:hover, a:hover
 {
 	background-color: var(--input-bg-button-hover);
 }
 
-input[type=button]:active, input[type=submit]:active, button:active
+input[type=button]:active, input[type=submit]:active, button:active, a:active
 {
 	background-color: var(--input-bg-button-active);
 }
