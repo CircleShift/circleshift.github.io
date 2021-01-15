@@ -1,4 +1,4 @@
-# corechg.github.io
+# circleshift.github.io
 A neat little host for some of my projects
 
-[See Here](https://corechg.github.io)
+[See Here](https://circleshift.github.io)
