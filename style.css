@@ -14,13 +14,13 @@ h1::after {
 }
 
 a {
-    color: #00ccff;
+    color: #0099ff;
     text-decoration: none;
     transition-duration: 0.2s;
 }
 
 a:hover {
-    color: #0099ff;
+    color: black;
 }
 
 span.end {
