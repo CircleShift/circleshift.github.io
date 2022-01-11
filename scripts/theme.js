@@ -12,7 +12,7 @@ const BASE_THEMES = [[
 const APP_NAME = "cshift-net";
 
 class Theme{
-	static theme = document.getElementById("theme");
+	static theme = document.getElementById("theme-" + APP_NAME);
 	static UserThemes = [[],[]];
 
 	static init()
@@ -28,11 +28,7 @@ class Theme{
 		if(Cookies.getCookie("theme-" + APP_NAME) == ""){
 			Cookies.setYearCookie("theme", BASE_THEMES[0][0]);
 		}
-	}
 
-	static restore()
-	{
-		Theme.init();
 		Theme.theme.setAttribute("href", Cookies.getCookie("theme-" + APP_NAME) + "?v=" + Date.now());
 	}
 
@@ -72,4 +68,4 @@ class Theme{
 	}
 }
 
-Theme.restore();
+Theme.init();
