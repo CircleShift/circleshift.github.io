@@ -26,7 +26,7 @@ class Theme{
 		}
 
 		if(Cookies.getCookie("theme-" + APP_NAME) == ""){
-			Cookies.setYearCookie("theme", BASE_THEMES[0][0]);
+			Cookies.setYearCookie("theme-" + APP_NAME, BASE_THEMES[0][0]);
 		}
 
 		Theme.theme.setAttribute("href", Cookies.getCookie("theme-" + APP_NAME) + "?v=" + Date.now());
