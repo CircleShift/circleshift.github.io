@@ -2,6 +2,7 @@
     font-family: "Roboto", sans-serif;
 	background-color: var(--main-bg);
 	color: var(--main-color);
+	transition-duration: 0.2s;
 }
 
 h1::after {
@@ -22,11 +23,11 @@ a {
 }
 
 a:hover {
-    color: var(--link-color);
+    color: var(--link-color-hover);
 }
 
 a:active {
-	color: var(--link-color);
+	color: var(--link-color-active);
 }
 
 span.end {
@@ -44,4 +45,25 @@ span.end::before {
     background-color: var(--divider-color);
 
     content: '';
+}
+
+button#light-dark {
+	position: sticky;
+	bottom: 10px;
+	right:10px;
+	font-size: 16px;
+	background-color: var(--link-color);
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition-duration: 0.2s;
+}
+
+button#light-dark:hover {
+	background-color: var(--link-color-hover);
+}
+
+button#light-dark:active {
+	background-color: var(--link-color-active);
 }
