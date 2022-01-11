@@ -1,7 +1,7 @@
 'use strict';
 
 (function() {
-	lightDark = document.getElementById("light-dark");
+	var lightDark = document.getElementById("light-dark");
 
 	function setButtonText() {
 		if(Theme.get() == BASE_THEMES[0][0])
