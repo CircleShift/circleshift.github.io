@@ -1,0 +1,14 @@
+* {
+	/*  Main  */
+	--main-bg: white;
+	--main-color: black;
+
+	/*  Underline  */
+	--divider-color: #bbb;
+
+	/*  Links  */
+	--link-color: #0084ff;
+	--link-color-hover: #3ea2ff;
+	--link-color-active:#0056a7;
+
+}

@@ -1,5 +1,7 @@
 * {
     font-family: "Roboto", sans-serif;
+	background-color: var(--main-bg);
+	color: var(--main-color);
 }
 
 h1::after {
@@ -8,19 +10,23 @@ h1::after {
     width: 100%;
     height: 3px;
 
-    background-color: #bbb;
+    background-color: var(--divider-color);
 
     content: '';
 }
 
 a {
-    color: #0099ff;
+    color: var(--link-color);
     text-decoration: none;
     transition-duration: 0.2s;
 }
 
 a:hover {
-    color: black;
+    color: var(--link-color);
+}
+
+a:active {
+	color: var(--link-color);
 }
 
 span.end {
@@ -35,7 +41,7 @@ span.end::before {
     width: 100%;
     height: 3px;
 
-    background-color: #bbb;
+    background-color: var(--divider-color);
 
     content: '';
 }
