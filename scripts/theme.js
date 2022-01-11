@@ -12,7 +12,7 @@ const BASE_THEMES = [[
 const APP_NAME = "cshift-net";
 
 class Theme{
-	static theme = document.getElementById("theme-" + APP_NAME);
+	static theme = document.getElementById("theme");
 	static UserThemes = [[],[]];
 
 	static init()
