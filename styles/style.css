@@ -1,8 +1,12 @@
 * {
     font-family: "Roboto", sans-serif;
-	background-color: var(--main-bg);
 	color: var(--main-color);
 	transition-duration: 0.2s;
+}
+
+html {
+	background-color: var(--main-bg);
+	transition-duration: 0.5s;
 }
 
 h1::after {
@@ -19,7 +23,6 @@ h1::after {
 a {
     color: var(--link-color);
     text-decoration: none;
-    transition-duration: 0.2s;
 }
 
 a:hover {
@@ -57,7 +60,6 @@ button#light-dark {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	transition-duration: 0.2s;
 }
 
 button#light-dark:hover {
