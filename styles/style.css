@@ -1,5 +1,7 @@
 * {
-    font-family: "Roboto", sans-serif;
+	--main-color: #808080;
+	--main-bg: #808080;
+	font-family: "Roboto", sans-serif;
 	color: var(--main-color);
 	transition-duration: 0.2s;
 }
